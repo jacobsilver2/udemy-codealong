@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-import Person from './Person/Person';
+import classes from './Person.css';
 
-const persons = (props) => props.persons.map( ( person, index ) => {
-        return <Person
-          click={() => props.clicked( index )}
-          name={person.name}
-          age={person.age}
-          key={person.id}
-          changed={( event ) => props.changed( event, person.id )} />
-      } );
+class Person extends Component {
+  render() {
+    return(
+      <div className={classes.Person}>
+      <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
+      <p>{this.props.children}</p>
+      <input type="text" onChange={this.props.changed} value={this.props.name} />
+  </div>
+    )
+  }
+}
 
-export default persons;
+
+
+export default Person;
